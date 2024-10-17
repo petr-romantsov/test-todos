@@ -1,0 +1,8 @@
+.active {
+  color: inherit;
+}
+
+.completed {
+  color: grey;
+  text-decoration: line-through;
+}

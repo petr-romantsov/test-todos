@@ -20,6 +20,7 @@ export const AddTodoField: FC<AddTodoFieldProps> = ({ addTodo }) => {
         type="text"
         name="add-todo"
         value={todoText}
+        placeholder="What needs to be done?"
         onChange={(event) => setTodoText(event.target.value)}
       />
       <button>Add</button>

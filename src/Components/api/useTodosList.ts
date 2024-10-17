@@ -46,9 +46,18 @@ export const useTodosList = () => {
     setTodosList((prevList) => prevList.filter((todo) => todo.id !== id));
   };
 
+  const toggleTodo = (id: string) => {
+    setTodosList((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo,
+      ),
+    );
+  };
+
   return {
     todosList,
     addTodo,
     removeTodo,
+    toggleTodo,
   };
 };

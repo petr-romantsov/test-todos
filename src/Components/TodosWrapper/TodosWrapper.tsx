@@ -4,13 +4,17 @@ import { useTodosList } from '../api/useTodosList';
 import { FilterField } from '../FilterField/FilterField';
 
 export const TodosWrapper = () => {
-  const { todosList, addTodo, removeTodo } = useTodosList();
+  const { todosList, addTodo, removeTodo, toggleTodo } = useTodosList();
 
   return (
     <div>
       <h1>My todos</h1>
       <AddTodoField addTodo={addTodo} />
-      <TodosList todos={todosList} removeTodo={removeTodo} />
+      <TodosList
+        todos={todosList}
+        removeTodo={removeTodo}
+        toggleTodo={toggleTodo}
+      />
       <FilterField />
     </div>
   );

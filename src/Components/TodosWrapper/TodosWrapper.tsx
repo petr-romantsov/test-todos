@@ -2,6 +2,7 @@ import { TodosList } from '../TodosList/TodosList';
 import { AddTodoField } from '../AddTodoField/AddTodoField';
 import { useTodosList } from '../api/useTodosList';
 import { FilterField } from '../FilterField/FilterField';
+import { Typography, Paper } from '@mui/material';
 
 export const TodosWrapper = () => {
   const {
@@ -15,8 +16,10 @@ export const TodosWrapper = () => {
   } = useTodosList();
 
   return (
-    <div>
-      <h1>My todos</h1>
+    <Paper>
+      <Typography variant="h1" gutterBottom>
+        My todos
+      </Typography>
       <AddTodoField addTodo={addTodo} />
       <TodosList
         todos={filteredList}
@@ -28,6 +31,6 @@ export const TodosWrapper = () => {
         setFilter={setFilter}
         clearCompleted={clearCompleted}
       />
-    </div>
+    </Paper>
   );
 };

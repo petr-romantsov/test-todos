@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Todo } from './Todo';
 
 export const useTodosList = () => {
-  const testList: Todo[] = [
+  const initialTodos: Todo[] = [
     {
       text: 'Сделать структуру проекта',
       id: '1',
@@ -29,7 +29,15 @@ export const useTodosList = () => {
       isDone: false,
     },
   ];
-  const [todosList, setTodosList] = useState<Todo[]>(testList);
+  const [todosList, setTodosList] = useState<Todo[]>(() => {
+    const savedTodos = localStorage.getItem('todos');
+    return savedTodos ? JSON.parse(savedTodos) : initialTodos;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todosList));
+  }, [todosList]);
+
   const [filter, setFilter] = useState<string>('All');
 
   const addTodo = (text: string) => {
@@ -77,6 +85,10 @@ export const useTodosList = () => {
 
   const filteredList = getFilteredTodos();
 
+  const clearCompleted = () => {
+    setTodosList((prevTodos) => prevTodos.filter((todo) => !todo.isDone));
+  };
+
   return {
     todosList,
     addTodo,
@@ -84,5 +96,6 @@ export const useTodosList = () => {
     toggleTodo,
     filteredList,
     setFilter,
+    clearCompleted,
   };
 };

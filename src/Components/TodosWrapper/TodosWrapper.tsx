@@ -11,6 +11,7 @@ export const TodosWrapper = () => {
     toggleTodo,
     filteredList,
     setFilter,
+    clearCompleted,
   } = useTodosList();
 
   return (
@@ -22,7 +23,11 @@ export const TodosWrapper = () => {
         removeTodo={removeTodo}
         toggleTodo={toggleTodo}
       />
-      <FilterField todos={todosList} setFilter={setFilter} />
+      <FilterField
+        todos={todosList}
+        setFilter={setFilter}
+        clearCompleted={clearCompleted}
+      />
     </div>
   );
 };

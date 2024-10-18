@@ -5,9 +5,14 @@ import { Todo } from '../api/Todo';
 type FilterFieldProps = {
   todos: Todo[];
   setFilter: (filter: string) => void;
+  clearCompleted: () => void;
 };
 
-export const FilterField: FC<FilterFieldProps> = ({ todos, setFilter }) => {
+export const FilterField: FC<FilterFieldProps> = ({
+  todos,
+  setFilter,
+  clearCompleted,
+}) => {
   const activeTodosCount = todos.filter((todo) => todo.isDone === false).length;
 
   return (
@@ -22,7 +27,9 @@ export const FilterField: FC<FilterFieldProps> = ({ todos, setFilter }) => {
       <button className="filter-btn" onClick={() => setFilter('Completed')}>
         Completed
       </button>
-      <button className="filter-btn">Clear completed</button>
+      <button className="filter-btn" onClick={() => clearCompleted()}>
+        Clear completed
+      </button>
     </div>
   );
 };

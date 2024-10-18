@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Todo } from './Todo';
 
 export const useTodosList = () => {
@@ -30,6 +30,7 @@ export const useTodosList = () => {
     },
   ];
   const [todosList, setTodosList] = useState<Todo[]>(testList);
+  const [filter, setFilter] = useState<string>('All');
 
   const addTodo = (text: string) => {
     setTodosList([
@@ -54,10 +55,34 @@ export const useTodosList = () => {
     );
   };
 
+  const activeTodos = useMemo(
+    () => todosList.filter((todo) => !todo.isDone),
+    [todosList, filter],
+  );
+  const completedTodos = useMemo(
+    () => todosList.filter((todo) => todo.isDone),
+    [todosList, filter],
+  );
+
+  const getFilteredTodos = () => {
+    switch (filter) {
+      case 'Active':
+        return activeTodos;
+      case 'Completed':
+        return completedTodos;
+      default:
+        return todosList;
+    }
+  };
+
+  const filteredList = getFilteredTodos();
+
   return {
     todosList,
     addTodo,
     removeTodo,
     toggleTodo,
+    filteredList,
+    setFilter,
   };
 };

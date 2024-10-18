@@ -4,18 +4,25 @@ import { useTodosList } from '../api/useTodosList';
 import { FilterField } from '../FilterField/FilterField';
 
 export const TodosWrapper = () => {
-  const { todosList, addTodo, removeTodo, toggleTodo } = useTodosList();
+  const {
+    todosList,
+    addTodo,
+    removeTodo,
+    toggleTodo,
+    filteredList,
+    setFilter,
+  } = useTodosList();
 
   return (
     <div>
       <h1>My todos</h1>
       <AddTodoField addTodo={addTodo} />
       <TodosList
-        todos={todosList}
+        todos={filteredList}
         removeTodo={removeTodo}
         toggleTodo={toggleTodo}
       />
-      <FilterField />
+      <FilterField todos={todosList} setFilter={setFilter} />
     </div>
   );
 };

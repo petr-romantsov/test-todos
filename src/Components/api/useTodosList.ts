@@ -1,54 +1,32 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Todo } from './Todo';
+import { FieldError, Filter, Todo } from './useTodoList.types.';
 
 export const useTodosList = () => {
-  const initialTodos: Todo[] = [
-    {
-      text: 'Сделать структуру проекта',
-      id: '1',
-      isDone: false,
-    },
-    {
-      text: 'Прописать логику добавления дела',
-      id: '2',
-      isDone: false,
-    },
-    {
-      text: 'Прописать логику отметки дела выполненным',
-      id: '3',
-      isDone: false,
-    },
-    {
-      text: 'Прописать логику удаления дела',
-      id: '4',
-      isDone: false,
-    },
-    {
-      text: 'Добавить в проекте Material UI',
-      id: '5',
-      isDone: false,
-    },
-  ];
+  const initialTodos: Todo[] = [];
   const [todosList, setTodosList] = useState<Todo[]>(() => {
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : initialTodos;
   });
+  const [filter, setFilter] = useState<Filter>('All');
+  const [fieldError, setFieldError] = useState<FieldError>(null);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todosList));
   }, [todosList]);
 
-  const [filter, setFilter] = useState<string>('All');
-
   const addTodo = (text: string) => {
-    setTodosList([
-      ...todosList,
-      {
-        text: text,
-        id: crypto.randomUUID(),
-        isDone: false,
-      },
-    ]);
+    if (text.trim() !== '') {
+      setTodosList([
+        ...todosList,
+        {
+          text: text.trim(),
+          id: crypto.randomUUID(),
+          isDone: false,
+        },
+      ]);
+    } else {
+      setFieldError('You need to fill the field');
+    }
   };
 
   const removeTodo = (id: string) => {
@@ -65,11 +43,11 @@ export const useTodosList = () => {
 
   const activeTodos = useMemo(
     () => todosList.filter((todo) => !todo.isDone),
-    [todosList, filter],
+    [todosList],
   );
   const completedTodos = useMemo(
     () => todosList.filter((todo) => todo.isDone),
-    [todosList, filter],
+    [todosList],
   );
 
   const getFilteredTodos = () => {
@@ -78,9 +56,13 @@ export const useTodosList = () => {
         return activeTodos;
       case 'Completed':
         return completedTodos;
-      default:
+      case 'All':
         return todosList;
     }
+  };
+
+  const changeFilter = (filter: Filter): void => {
+    setFilter(filter);
   };
 
   const filteredList = getFilteredTodos();
@@ -95,7 +77,10 @@ export const useTodosList = () => {
     removeTodo,
     toggleTodo,
     filteredList,
-    setFilter,
+    filter,
+    changeFilter,
     clearCompleted,
+    fieldError,
+    setFieldError,
   };
 };

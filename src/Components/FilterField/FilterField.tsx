@@ -1,35 +1,88 @@
 import { FC } from 'react';
+import { Filter, Todo } from '../api/useTodoList.types.';
+import { Button, Typography } from '@mui/material';
 import './FilterField.css';
-import { Todo } from '../api/Todo';
 
 type FilterFieldProps = {
   todos: Todo[];
-  setFilter: (filter: string) => void;
+  filter: Filter;
+  changeFilter: (filter: Filter) => void;
   clearCompleted: () => void;
 };
 
 export const FilterField: FC<FilterFieldProps> = ({
   todos,
-  setFilter,
+  filter,
+  changeFilter,
   clearCompleted,
 }) => {
   const activeTodosCount = todos.filter((todo) => todo.isDone === false).length;
+  const onAllClickHandler = () => changeFilter('All');
+  const onActiveClickHandler = () => changeFilter('Active');
+  const onCompletedClickHandler = () => changeFilter('Completed');
+  const onClearCompletedClickHandler = () => clearCompleted();
 
   return (
     <div className="filter-wrapper">
-      <span className="filter-btn">{activeTodosCount} items left</span>
-      <button className="filter-btn" onClick={() => setFilter('All')}>
+      <Typography
+        variant="body1"
+        sx={{
+          color: '#8a8a8a',
+          fontWeight: 300,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        {activeTodosCount} items left
+      </Typography>
+      <Button
+        sx={{
+          fontWeight: 300,
+          textTransform: 'none',
+          fontSize: 'inherit',
+        }}
+        variant="text"
+        color={filter === 'All' ? 'secondary' : 'inherit'}
+        onClick={onAllClickHandler}
+      >
         All
-      </button>
-      <button className="filter-btn" onClick={() => setFilter('Active')}>
+      </Button>
+      <Button
+        sx={{
+          fontWeight: 300,
+          textTransform: 'none',
+          fontSize: 'inherit',
+        }}
+        variant="text"
+        color={filter === 'Active' ? 'secondary' : 'inherit'}
+        onClick={onActiveClickHandler}
+      >
         Active
-      </button>
-      <button className="filter-btn" onClick={() => setFilter('Completed')}>
+      </Button>
+      <Button
+        sx={{
+          fontWeight: 300,
+          textTransform: 'none',
+          fontSize: 'inherit',
+        }}
+        variant="text"
+        color={filter === 'Completed' ? 'secondary' : 'inherit'}
+        onClick={onCompletedClickHandler}
+      >
         Completed
-      </button>
-      <button className="filter-btn" onClick={() => clearCompleted()}>
+      </Button>
+      <Button
+        sx={{
+          fontWeight: 300,
+          textTransform: 'none',
+          fontSize: 'inherit',
+        }}
+        variant="text"
+        color="inherit"
+        onClick={onClearCompletedClickHandler}
+      >
         Clear completed
-      </button>
+      </Button>
     </div>
   );
 };

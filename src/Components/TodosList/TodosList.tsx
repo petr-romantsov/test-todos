@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Todo } from '../api/Todo';
-import { TodoView } from '../TodoView/TodoView';
+import { Todo } from '../api/useTodoList.types.';
+import { TodoItem } from '../TodoView/TodoItem';
+import { List } from '@mui/material';
 
 type TodosListProps = {
   todos: Todo[];
@@ -14,15 +15,15 @@ export const TodosList: FC<TodosListProps> = ({
   toggleTodo,
 }) => {
   return (
-    <ul>
+    <List sx={{ width: '100%', textAlign: 'left' }}>
       {todos.map((todo) => (
-        <TodoView
+        <TodoItem
           todo={todo}
           key={todo.id}
           removeTodo={removeTodo}
           toggleTodo={toggleTodo}
         />
       ))}
-    </ul>
+    </List>
   );
 };

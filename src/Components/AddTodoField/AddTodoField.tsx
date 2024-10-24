@@ -41,7 +41,7 @@ export const AddTodoField: FC<AddTodoFieldProps> = ({
           value={todoText}
           onChange={onChangeHandler}
         />
-        <Button variant="text" color="secondary">
+        <Button variant="text" color="secondary" onClick={onSubmit}>
           Add
         </Button>
       </form>

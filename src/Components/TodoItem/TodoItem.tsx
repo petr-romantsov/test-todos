@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Todo } from '../api/useTodoList.types.';
+import { Todo } from '../../api/useTodoList.types.';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForeverOutlined';
-import './TodoView.css';
+import './TodoItem.css';
 import {
   Checkbox,
   IconButton,

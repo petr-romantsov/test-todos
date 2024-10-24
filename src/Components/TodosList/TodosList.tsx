@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { Todo } from '../api/useTodoList.types.';
-import { TodoItem } from '../TodoView/TodoItem';
-import { List, Typography } from '@mui/material';
+import { Todo } from '../../api/useTodoList.types.';
+import { TodoItem } from '../TodoItem/TodoItem';
+import { List } from '@mui/material';
+import { EmptyListMessage } from '../EmptyListMessage/EmptyListMessage';
 
 type TodosListProps = {
   todos: Todo[];
@@ -16,14 +17,7 @@ export const TodosList: FC<TodosListProps> = ({
 }) => {
   return (
     <List sx={{ width: '100%', textAlign: 'left' }}>
-      {!todos.length && (
-        <Typography
-          sx={{ textAlign: 'center', paddingTop: '10px' }}
-          variant="body1"
-        >
-          There is no one task
-        </Typography>
-      )}
+      {!todos.length && <EmptyListMessage />}
       {todos.map((todo) => (
         <TodoItem
           todo={todo}

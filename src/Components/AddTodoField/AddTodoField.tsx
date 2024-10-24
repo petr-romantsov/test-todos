@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { ChangeEvent, FC, FormEventHandler, useState } from 'react';
 import './AddTodoField.css';
-import { FieldError } from '../api/useTodoList.types.';
+import { FieldError } from '../../api/useTodoList.types.';
 
 type AddTodoFieldProps = {
   addTodo: (text: string) => void;

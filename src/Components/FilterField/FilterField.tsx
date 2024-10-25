@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Filter, Todo } from '../../api/useTodoList.types.';
+import { Filter, Todo } from '../../api/useTodoList.types';
 import { AllFilterBtn } from '../AllFilterBtn/AllFilterBtn';
 import { ClearCompletedBtn } from '../ClearCompletedBtn/ClearCompletedBtn';
 import { ActiveFilterBtn } from '../ActiveFilterBtn/ActiveFilterBtn';

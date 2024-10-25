@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { Filter } from '../../api/useTodoList.types.';
+import { Filter } from '../../api/useTodoList.types';
 import { FC } from 'react';
 
 type CompletedFilterBtnProps = {

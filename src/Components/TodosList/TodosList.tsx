@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Todo } from '../../api/useTodoList.types.';
+import { Todo } from '../../api/useTodoList.types';
 import { TodoItem } from '../TodoItem/TodoItem';
 import { List } from '@mui/material';
 import { EmptyListMessage } from '../EmptyListMessage/EmptyListMessage';

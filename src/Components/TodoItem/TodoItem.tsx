@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Todo } from '../../api/useTodoList.types.';
+import { Todo } from '../../api/useTodoList.types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForeverOutlined';
 import './TodoItem.css';
 import {

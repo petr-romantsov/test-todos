@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FieldError, Filter, Todo } from './useTodoList.types.';
+import {
+  FieldError,
+  Filter,
+  Todo,
+  UseTodosListReturnType,
+} from './useTodoList.types';
+import { v4 as uuidv4 } from 'uuid';
 
-export const useTodosList = () => {
+export const useTodosList = (): UseTodosListReturnType => {
   const initialTodos: Todo[] = [];
   const [todosList, setTodosList] = useState<Todo[]>(() => {
     const savedTodos = localStorage.getItem('todos');
@@ -16,11 +22,11 @@ export const useTodosList = () => {
 
   const addTodo = (text: string) => {
     if (text.trim() !== '') {
-      setTodosList([
-        ...todosList,
+      setTodosList((prevTodos) => [
+        ...prevTodos,
         {
           text: text.trim(),
-          id: crypto.randomUUID(),
+          id: uuidv4(),
           isDone: false,
         },
       ]);

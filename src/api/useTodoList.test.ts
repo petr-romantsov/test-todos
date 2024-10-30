@@ -122,7 +122,6 @@ describe('check useTodosList-clearCompleted', () => {
       result.current.addTodo('Completed task');
       result.current.addTodo('Second completed task');
     });
-    console.log(result.current.todosList);
 
     const firstIdToToggle = result.current.todosList[1].id;
     const secondIdToToggle = result.current.todosList[2].id;
@@ -131,8 +130,6 @@ describe('check useTodosList-clearCompleted', () => {
       result.current.toggleTodo(firstIdToToggle);
       result.current.toggleTodo(secondIdToToggle);
     });
-
-    console.log(result.current.todosList);
 
     act(() => {
       result.current.clearCompleted();

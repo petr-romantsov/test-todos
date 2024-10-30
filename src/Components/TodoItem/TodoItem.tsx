@@ -44,6 +44,7 @@ export const TodoItem: FC<TodoItemProps> = ({
         <ListItemText
           className={todo.isDone ? 'completed' : 'active'}
           primary={todo.text}
+          data-testid="for-test"
         />
       </ListItemButton>
     </ListItem>

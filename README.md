@@ -1,50 +1,57 @@
-# React + TypeScript + Vite
+# Todos app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[View the application](https://petr-romantsov.github.io/test-todos/)
 
-Currently, two official plugins are available:
+![Demo image of app](./assets/todos-demo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ToDo application that allows you to manage your current task list.
+Tasks can be added, deleted, and marked as completed. The following filters are also available:
 
-## Expanding the ESLint configuration
+- All tasks
+- Active tasks only
+- Completed tasks only
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Using the “Clear completed” button, you can remove completed tasks from the list.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Tools :
+
+![TypeScript](https://img.shields.io/badge/TypeSctipt-316192?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Vitest-%236e9f18?style=for-the-badge&logo=Vitest&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Localstorage-%23f2f4f3?style=for-the-badge&logoColor=black)
+
+### Getting started
+
+To get more familiar with the application code, clone the repository from the `dev` branch and perform the necessary actions.
+
+Install the dependencies
+
+```
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To run the application in development mode, execute the command
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+npm run dev
+```
+
+To run the tests, execute
+
+```
+npm run test
+```
+
+To create a build of the application, execute the command:
+
+```
+npm run build
+```
+
+### Link
+
+Link to view the project: https://petr-romantsov.github.io/test-todos/

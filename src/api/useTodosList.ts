@@ -6,18 +6,18 @@ import {
   UseTodosListReturnType,
 } from './useTodoList.types';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  loadTodosFromLocalStorage,
+  saveTodosToLocalStorage,
+} from './LocalStorageService';
 
 export const useTodosList = (): UseTodosListReturnType => {
-  const initialTodos: Todo[] = [];
-  const [todosList, setTodosList] = useState<Todo[]>(() => {
-    const savedTodos = localStorage.getItem('todos');
-    return savedTodos ? JSON.parse(savedTodos) : initialTodos;
-  });
+  const [todosList, setTodosList] = useState<Todo[]>(loadTodosFromLocalStorage);
   const [filter, setFilter] = useState<Filter>('All');
   const [fieldError, setFieldError] = useState<FieldError>(null);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todosList));
+    saveTodosToLocalStorage(todosList);
   }, [todosList]);
 
   const addTodo = (text: string) => {

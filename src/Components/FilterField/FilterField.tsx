@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { Filter, Todo } from '../../api/useTodoList.types';
 import { AllFilterBtn } from '../AllFilterBtn/AllFilterBtn';
 import { ClearCompletedBtn } from '../ClearCompletedBtn/ClearCompletedBtn';
@@ -20,7 +20,10 @@ export const FilterField: FC<FilterFieldProps> = ({
   changeFilter,
   clearCompleted,
 }) => {
-  const activeTodosCount = todos.filter((todo) => todo.isDone === false).length;
+  const activeTodosCount = useMemo(
+    () => todos.filter((todo) => todo.isDone === false).length,
+    [todos],
+  );
 
   return (
     <div className="filter-wrapper">
